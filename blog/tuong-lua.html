@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tường lửa — FELNEE</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="brand" aria-label="FELNEE - Home">
+        <img src="../assets/logo.svg?v=4" alt="FELNEE" class="site-logo">
+        <span class="brand-text"><span class="brand-word">FELNEE</span></span>
+      </a>
+      <nav class="main-nav">
+        <a href="../index.html" class="link-underline">Home</a>
+        <a href="../blog.html" class="link-underline active">Blog</a>
+        <a href="../projects.html" class="link-underline">Projects</a>
+        <a href="../about.html" class="link-underline">About</a>
+        <a href="../contact.html" class="link-underline">Contact</a>
+      </nav>
+      <div class="nav-right"></div>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="section">
+      <div class="container">
+        <h1>Cấu hình tường lửa: quy tắc thực tế cần biết</h1>
+        <p class="meta">Sep 2025 • 4 phút</p>
+        <img src="../assets/images/tuong-lua.png" alt="Firewall configuration" loading="lazy" decoding="async">
+        <div class="post-body">
+          <p>Một tường lửa tốt bắt đầu bằng nguyên tắc bỏ mặc định và chỉ mở những port cần thiết. Bài viết chia nhỏ các quy tắc theo dịch vụ và theo vùng mạng.</p>
+          <p>Thường xuyên rà soát và loại bỏ các rule không còn cần thiết, ghi chú rõ lý do và giữ phiên bản thay đổi sẽ giúp giảm dần các policy phức tạp và rủi ro cấu hình sai.</p>
+          <p>Hãy sử dụng automation để triển khai thay đổi (IaC/Ansible) và kiểm tra policy trên staging trước khi áp dụng lên production để giảm nguy cơ gián đoạn dịch vụ.</p>
+        </div>
+        <p><a href="../blog.html" class="link-underline">Quay lại</a></p>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>

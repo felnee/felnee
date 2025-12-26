@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tự động phản hồi — FELNEE</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="brand" aria-label="FELNEE - Home">
+        <img src="../assets/logo.svg?v=4" alt="FELNEE" class="site-logo">
+        <span class="brand-text"><span class="brand-word">FELNEE</span></span>
+      </a>
+      <nav class="main-nav">
+        <a href="../index.html" class="link-underline">Home</a>
+        <a href="../blog.html" class="link-underline active">Blog</a>
+        <a href="../projects.html" class="link-underline">Projects</a>
+        <a href="../about.html" class="link-underline">About</a>
+        <a href="../contact.html" class="link-underline">Contact</a>
+      </nav>
+      <div class="nav-right"></div>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="section">
+      <div class="container">
+        <h1>Tự động phản hồi sự cố bằng workflow (SOAR)</h1>
+        <p class="meta">Oct 2025 • 6 phút</p>
+        <img src="../assets/images/workflow.png" alt="SOAR automation" loading="lazy" decoding="async">
+        <div class="post-body">
+          <p>SOAR giúp tự động hóa những nhiệm vụ lặp lại: thu thập thông tin, cách ly endpoint, và tạo ticket. Chúng tôi trình bày vài playbook mẫu với n8n.</p>
+          <p>Việc đo lường hiệu quả (time-to-remediate, false positive rate) và lồng các bước kiểm tra trước khi thực thi hành động tự động là cần thiết để đảm bảo an toàn và tránh tác động ngoài ý muốn.</p>
+          <p>Khi thiết kế playbook, hãy thêm bước kiểm tra (approval / dry-run) cho các tác vụ có tác động cao, log đầy đủ hành động và tạo dashboard theo dõi success/failure của từng playbook.</p>
+        </div>
+        <p><a href="../blog.html" class="link-underline">Quay lại</a></p>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>

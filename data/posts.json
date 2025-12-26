@@ -1,0 +1,74 @@
+﻿[
+    {
+        "id":  "giamsat-siem",
+        "title":  "Giám sát SIEM: Bước đầu xây dựng SOC",
+        "date":  "2025-12-01",
+        "read_time":  "5 phút",
+        "image":  "assets/images/giam-sat-siem.png",
+        "excerpt":  "Tổng quan về cách triển khai SIEM để thu thập, phân loại và cảnh báo sự kiện an ninh.",
+        "content":  "\u003cp\u003eSIEM (Security Information and Event Management) là nền tảng kết hợp thu thập log, phân tích và cảnh báo. Bắt đầu bằng việc xác định dữ liệu có ích, cấu hình nguồn log và thiết lập cảnh báo theo tầm quan trọng.\u003c/p\u003e\u003cp\u003eTrong bài viết này, chúng tôi đi qua các bước triển khai cơ bản và so sánh các thiết kế phổ biến (centralized vs distributed logging). Bạn sẽ thấy ví dụ thực tế về cách chọn nguồn dữ liệu (firewall, proxy, endpoint), cách chuẩn hóa định dạng log (RFC3339 timestamps, structured JSON), và một mẫu rule correlation đơn giản để phát hiện login bất thường theo IP và username.\u003c/p\u003e\u003cp\u003eMột điểm then chốt là đảm bảo chất lượng dữ liệu: loại bỏ noise, chuẩn hóa trường (host, user, correlation_id) và áp dụng enrichment bằng threat intelligence để tăng độ tin cậy của cảnh báo. Chúng tôi đưa ra checklist vận hành: xác định nguồn logs ưu tiên, thiết lập retention theo mức độ nhạy cảm, và quy trình review rule định kỳ.\u003c/p\u003e\u003cp\u003eVí dụ thực hành: một rule correlation đơn giản (pseudo-query) để phát hiện nhiều lần login thất bại sau đó login thành công sẽ giúp phát hiện credential stuffing; chúng tôi trình bày cách test rule bằng replay log và xác minh false positive.\u003c/p\u003e\u003cp\u003eVề KPI và đo lường, nên theo dõi MTTR, tỉ lệ cảnh báo hữu ích (%), và thời gian điều tra trung bình. Những chỉ số này giúp tinh chỉnh rule, phân bổ nguồn lực SOC và cải thiện quy trình phản ứng sự cố theo thời gian.\u003c/p\u003e"
+    },
+    {
+        "id":  "phan-tich-log",
+        "title":  "Phân tích log hiệu quả: mẹo \u0026 thủ thuật",
+        "date":  "2025-11-12",
+        "read_time":  "6 phút",
+        "image":  "assets/images/phan-tich-hieu-qua-log.png",
+        "excerpt":  "Cách lọc và phân tích log để rút ra thông tin có giá trị phục vụ điều tra và giám sát.",
+        "content":  "\u003cp\u003ePhân tích log đòi hỏi kỹ năng nhận dạng pattern, loại bỏ noise và xây dựng rule phù hợp để cảnh báo có ý nghĩa. Bài viết trình bày cách thiết kế truy vấn tối ưu, áp dụng cảnh báo theo ngữ cảnh và kỹ thuật tuning để giảm false positive.\u003c/p\u003e\u003cp\u003eThực hành tốt bao gồm chuẩn hóa định dạng log (timestamps, trường người dùng/host), gắn metadata có ích (correlation_id), và enrichment từ threat intelligence để tăng tín hiệu. Chúng tôi chỉ ra cách kết hợp nhiều nguồn (proxy, firewall, endpoint) để có góc nhìn đầy đủ hơn về sự kiện.\u003c/p\u003e\u003cp\u003eKhi điều tra IOC, áp dụng session correlation và phân tích chuỗi sự kiện sẽ giúp giảm các false hit; ví dụ, kết hợp request logs với authentication logs để xác định chuỗi hành vi đáng ngờ. Lưu lại các mẫu truy vấn (saved searches) rất hữu ích cho việc chia sẻ trong đội và tái sử dụng.\u003c/p\u003e\u003cp\u003eVề nền tảng, các hệ thống như ELK/Elastic, Splunk hoặc ClickHouse đều có điểm mạnh riêng; bài viết chỉ ra các tối ưu đơn giản như mapping index, rollover policy, và cách dùng aggregations để trả về kết quả nhanh hơn trong khung thời gian thực.\u003c/p\u003e\u003cp\u003eCuối cùng, chúng tôi đưa ra danh sách kiểm tra (checklist) gồm: xác định nguồn dữ liệu cần ưu tiên, thiết kế trường metadata thống nhất, lưu mẫu truy vấn hữu ích và đo lường hiệu năng (response time, query latency, false positive rate).\u003c/p\u003e"
+    },
+    {
+        "id":  "phat-hien-xam-nhap",
+        "title":  "Phát hiện xâm nhập (IDS/IPS) trong thực tế",
+        "date":  "2025-10-30",
+        "read_time":  "7 phút",
+        "image":  "assets/images/phat-hien-xam-nhap.png",
+        "excerpt":  "So sánh IDS vs IPS và cách cấu hình để giảm false positive trong môi trường sản xuất.",
+        "content":  "\u003cp\u003eIDS (Intrusion Detection System) là công cụ cảnh báo, còn IPS (Intrusion Prevention System) có thể chặn hành vi ngay lập tức — cả hai cần được tuning cẩn thận để tránh ảnh hưởng tới hệ thống sản xuất. Bài viết so sánh các chiến lược deployment, như inline vs tap mode, và ảnh hưởng tới hiệu suất mạng.\u003c/p\u003e\u003cp\u003eKỹ thuật tuning gồm điều chỉnh threshold, whitelist các hành vi hợp lệ và áp dụng thử nghiệm trên môi trường staging trước khi áp dụng lên production. Chúng tôi trình bày ví dụ rule tuning để giảm false positive cho một rule SNORT phổ biến.\u003c/p\u003e\u003cp\u003eĐể theo dõi hiệu quả, cần các chỉ số: false positive rate theo rule, time-to-act (TTA) và số cảnh báo mỗi giờ. Sử dụng feedback loop từ đội SOC để điều chỉnh rule và cập nhật signatures là bước thiết yếu trong vòng đời detection.\u003c/p\u003e\u003cp\u003eCuối cùng, tích hợp IDS/IPS với SIEM và playbook phản ứng cho phép tự động hóa phần nào phản ứng — ví dụ tạm thời block IP, sau đó tạo task điều tra bằng ticket. Bài viết đưa ra checklist triển khai và cách đo lường tác động khi bật IPS trong môi trường sản xuất.\u003c/p\u003e"
+    },
+    {
+        "id":  "tu-dong-phan-hoi",
+        "title":  "Tự động phản hồi sự cố bằng workflow (SOAR)",
+        "date":  "2025-10-08",
+        "read_time":  "6 phút",
+        "image":  "assets/images/workflow.png",
+        "excerpt":  "Ví dụ về các playbook tự động hóa dùng n8n và kịch bản phản hồi khi phát hiện IOC.",
+        "content":  "\u003cp\u003eSOAR (Security Orchestration, Automation, and Response) giúp tự động hóa các nhiệm vụ lặp lại: thu thập thông tin, cách ly endpoint, và tạo ticket. Bài viết mô tả các playbook mẫu với n8n và minh hoạ cách kết hợp nhiều nguồn data để ra quyết định tự động.\u003c/p\u003e\u003cp\u003eMột playbook tiêu biểu gồm các bước: thu thập IOC, enrich với threat intelligence, phân loại mức độ cảnh báo, và quyết định hành động (block IP, cách ly endpoint, tạo ticket). Chúng tôi trình bày luồng thực hành, kèm ví dụ JSON cho một playbook đơn giản và cách kiểm tra dry-run trước khi áp dụng.\u003c/p\u003e\u003cp\u003eThiết kế playbook nên bao gồm approval steps cho hành động có tác động cao, logging đầy đủ và rollback plan. Bài hướng dẫn cũng nhắc đến cách đo lường success rate, failure rate và thời gian hoàn thành mỗi playbook để tối ưu hoá hoạt động.\u003c/p\u003e\u003cp\u003eKhi tích hợp SOAR với SIEM và ticketing, việc đồng bộ trạng thái (triaged, in progress, resolved) và dashboard theo dõi giúp đội SOC quản lý nhiều sự kiện đồng thời và giảm thời gian xử lý trung bình.\u003c/p\u003e"
+    },
+    {
+        "id":  "tuong-lua",
+        "title":  "Cấu hình tường lửa: quy tắc thực tế cần biết",
+        "date":  "2025-09-20",
+        "read_time":  "4 phút",
+        "image":  "assets/images/tuong-lua.png",
+        "excerpt":  "Những quy tắc đơn giản nhưng quan trọng khi viết access-control lists và policies tường lửa.",
+        "content":  "\u003cp\u003eMột tường lửa tốt bắt đầu bằng nguyên tắc deny-by-default và chỉ mở các port thực sự cần thiết. Bài viết hướng dẫn cách phân nhóm rule theo dịch vụ, phân vùng mạng và áp dụng least-privilege policy.\u003c/p\u003e\u003cp\u003eVận hành rule hiệu quả cần có quy trình: comment rõ ràng trên mỗi rule (mục đích, tác giả, ngày), review định kỳ để loại bỏ rule thừa và ghi nhật ký thay đổi để phục vụ audit. Chúng tôi trình bày checklist review policy và ví dụ rule hợp lý cho môi trường web-facing services.\u003c/p\u003e\u003cp\u003eĐể giảm rủi ro khi cập nhật policy, áp dụng automation (IaC cho firewall policies) và có rollback plan là điều cần thiết. Bài viết cũng gợi ý các kiểm thử hợp lý sau deployment (smoke tests, connectivity tests) và cách theo dõi logs để đảm bảo không có tác động ngoài ý muốn.\u003c/p\u003e"
+    },
+    {
+        "id":  "quan-ly-lo-hong",
+        "title":  "Quản lý lỗ hổng: từ phát hiện đến vá lỗi",
+        "date":  "2025-09-05",
+        "read_time":  "5 phút",
+        "image":  "assets/images/quan-ly-lo-hong.png",
+        "excerpt":  "Chu trình quản lý lỗ hổng và ưu tiên vá lỗi dựa trên rủi ro thực tế.",
+        "content":  "\u003cp\u003eQuản lý lỗ hổng bắt đầu từ quét định kỳ, phân loại theo mức rủi ro và ưu tiên hành động dựa trên thực tế tác động tới business. Bài viết trình bày workflow, công cụ (Qualys, Nessus, OpenVAS) và cách tích hợp kết quả vào ticketing system.\u003c/p\u003e\u003cp\u003eQuy trình hiệu quả gồm: quét, validate false positives, enrich with asset criticality, và tự động tạo ticket kèm SLA cho đội phụ trách. Chúng tôi cung cấp ví dụ về cách đặt SLA theo mức độ (Critical, High, Medium, Low) và cách theo dõi KPI như thời gian vá trung bình theo mức độ.\u003c/p\u003e\u003cp\u003eBeyond patching, cần có chương trình đánh giá sau vá để xác nhận remediation, cùng báo cáo định kỳ cho lãnh đạo và phân tích trend để nhận diện khu vực có rủi ro tích tụ.\u003c/p\u003e"
+    },
+    {
+        "id":  "zero-trust",
+        "title":  "Mạng Zero-Trust: Thiết kế và áp dụng",
+        "date":  "2025-08-11",
+        "read_time":  "8 phút",
+        "image":  "assets/images/zero_trust.png",
+        "excerpt":  "Nguyên tắc zero-trust, phân đoạn mạng và xác thực mạnh để giảm bề mặt tấn công.",
+        "content":  "\u003cp\u003eMạng Zero-Trust yêu cầu thiết kế theo nguyên tắc không tin tưởng mặc định: xác thực liên tục, kiểm soát truy cập theo chính sách và giám sát mọi luồng giao tiếp. Bài viết hướng dẫn từng bước triển khai và những sai lầm thường gặp.\u003c/p\u003e\u003cp\u003eTriển khai zero-trust gồm phân đoạn tài nguyên, áp dụng xác thực đa yếu tố cho các dịch vụ nhạy cảm, và quản lý quyền truy cập theo vai trò (RBAC/ABAC). Chúng tôi đưa ra lộ trình nhỏ từng bước để tổ chức bắt đầu mà không gây gián đoạn dịch vụ.\u003c/p\u003e\u003cp\u003eVề vận hành, cần có telemetry liên tục, chính sách dynamic và review policy dựa trên dữ liệu truy cập. Bài viết cung cấp ví dụ về cách giám sát luồng truy cập và điều chỉnh policy dựa trên hành vi thực tế để giữ cân bằng giữa an ninh và trải nghiệm người dùng.\u003c/p\u003e"
+    },
+    {
+        "id":  "phan-ung-su-co",
+        "title":  "Kịch bản tấn công thực tế và bài học",
+        "date":  "2025-08-01",
+        "read_time":  "9 phút",
+        "image":  "assets/images/kich-ban-tan-cong.png",
+        "excerpt":  "Phân tích các vụ tấn công nổi bật và các bài học rút ra cho đội vận hành SOC.",
+        "content":  "\u003cp\u003ePhân tích kịch bản tấn công thực tế giúp nhận diện lỗ hổng vận hành và cải thiện năng lực phản ứng. Bài viết phân tích từng case study, chỉ rõ timeline sự kiện, kỹ thuật tấn công và các yếu tố bị khai thác.\u003c/p\u003e\u003cp\u003eMỗi kịch bản kèm checklist khắc phục ngắn hạn (contain, isolate, triage) và dài hạn (patch, harden, policy review). Chúng tôi chỉ ra cách tổ chức sau-action review và cập nhật playbook để không lặp lại sai sót tương tự.\u003c/p\u003e\u003cp\u003eBài học rút ra thường tập trung vào: cải thiện chất lượng cảnh báo (giảm noise), tập huấn đội phản ứng, tối ưu hoá playbook để giảm MTTI (Mean Time To Investigate) và MTTR, và tăng cường automation trong bước triage để tiết kiệm thời gian xử lý.\u003c/p\u003e"
+    }
+]

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Phát hiện xâm nhập — FELNEE</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="brand" aria-label="FELNEE - Home">
+        <img src="../assets/logo.svg?v=4" alt="FELNEE" class="site-logo">
+        <span class="brand-text"><span class="brand-word">FELNEE</span></span>
+      </a>
+      <nav class="main-nav">
+        <a href="../index.html" class="link-underline">Home</a>
+        <a href="../blog.html" class="link-underline active">Blog</a>
+        <a href="../projects.html" class="link-underline">Projects</a>
+        <a href="../about.html" class="link-underline">About</a>
+        <a href="../contact.html" class="link-underline">Contact</a>
+      </nav>
+      <div class="nav-right"></div>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="section">
+      <div class="container">
+        <h1>Phát hiện xâm nhập (IDS/IPS) trong thực tế</h1>
+        <p class="meta">Oct 2025 • 7 phút</p>
+        <img src="../assets/images/phat-hien-xam-nhap.png" alt="Intrusion detection" loading="lazy" decoding="async">
+        <div class="post-body">
+          <p>IDS cảnh báo, IPS chủ động chặn; mỗi loại có điểm mạnh yếu. Bài viết nêu cách tuning rule, và cách kết hợp nhiều nguồn dữ liệu để tăng độ chính xác.</p>
+          <p>Triển khai trong thực tế đòi hỏi giám sát hiệu suất, lọc noise, và có quy trình phản hồi để xử lý cảnh báo ẩn danh; đồng thời cân nhắc tác động của hành động chặn tự động lên dịch vụ kinh doanh.</p>
+          <p>Giải pháp hiệu quả thường kết hợp sensor placement hợp lý, correlation với logs từ endpoint và network, và việc xác định rule priority theo business impact.</p>
+        </div>"
+        <p><a href="../blog.html" class="link-underline">Quay lại</a></p>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>

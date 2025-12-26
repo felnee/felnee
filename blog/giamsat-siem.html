@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Giám sát SIEM — FELNEE</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="brand" aria-label="FELNEE - Home">
+        <img src="../assets/logo.svg?v=4" alt="FELNEE" class="site-logo">
+        <span class="brand-text"><span class="brand-word">FELNEE</span></span>
+      </a>
+      <nav class="main-nav">
+        <a href="../index.html" class="link-underline">Home</a>
+        <a href="../blog.html" class="link-underline active">Blog</a>
+        <a href="../projects.html" class="link-underline">Projects</a>
+        <a href="../about.html" class="link-underline">About</a>
+        <a href="../contact.html" class="link-underline">Contact</a>
+      </nav>
+      <div class="nav-right"></div>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="section">
+      <div class="container">
+        <h1>Giám sát SIEM: Bước đầu xây dựng SOC</h1>
+        <p class="meta">Dec 2025 • 5 phút</p>
+        <img src="../assets/images/giam-sat-siem.png" alt="SIEM dashboard" loading="lazy" decoding="async">
+        <div class="post-body">
+          <p>SIEM (Security Information and Event Management) là nền tảng kết hợp thu thập log, phân tích và cảnh báo. Bắt đầu bằng việc xác định dữ liệu có ích, cấu hình nguồn log và thiết lập cảnh báo theo tầm quan trọng.</p>
+          <p>Trong bài viết này chúng tôi đi qua các bước triển khai cơ bản, lưu ý về cấu hình lưu trữ và cảnh báo khiến cho đội SOC có thể phản ứng nhanh hơn.</p>
+          <p>Để có một hệ thống SIEM hiệu quả cần chú ý đến chất lượng nguồn dữ liệu, tiêu chuẩn hóa định dạng log, và áp dụng các rule phù hợp để giảm thiểu false positive. Ngoài ra, việc tích hợp SIEM với các công cụ threat intelligence và hệ thống ticketing giúp tự động hóa quá trình điều tra và xử lý sự cố.</p>
+          <p>Thực tế triển khai bao gồm: lựa chọn nguồn dữ liệu quan trọng (firewall, proxy, endpoint, authenticator), định nghĩa retention phù hợp cho từng loại log, và áp dụng các bước correlation để nhận diện chuỗi sự kiện liên quan.</p>
+          <p>Cuối cùng, KPI cho SIEM nên được theo dõi: thời gian trung bình phản hồi (MTTR), số cảnh báo hữu ích trên tổng cảnh báo, và thời gian điều tra trung bình — các chỉ số này giúp đội SOC cải thiện quy trình và tối ưu tài nguyên.</p>
+        </div>
+        <p><a href="../blog.html" class="link-underline">Quay lại</a></p>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>

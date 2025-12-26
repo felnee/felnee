@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Blog — FELNEE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;700&family=Inter:wght@300;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="brand" aria-label="FELNEE - Home">
+        <img src="assets/logo.svg?v=4" alt="FELNEE logo" class="site-logo">
+        <span class="brand-text"><span class="brand-word">FELNEE</span></span>
+      </a>
+      <nav class="main-nav">
+          <a href="index.html" class="link-underline">Home</a>
+          <a href="blog.html" class="link-underline active">Blog</a>
+          <a href="projects.html" class="link-underline">Projects</a>
+          <a href="about.html" class="link-underline">About</a>
+          <a href="contact.html" class="link-underline">Contact</a>
+      </nav>
+      <div class="nav-right">
+        <div class="socials header-socials" aria-label="Social links">
+          <a href="https://www.instagram.com/felneee/" class="social-link instagram" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6">
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.5" cy="6.5" r="0.75" fill="currentColor" stroke="none" />
+            </svg>
+          </a>
+          <a href="https://www.facebook.com/felnee" class="social-link facebook" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7H8.9v-2.9h1.6V9.3c0-1.6 1-2.5 2.4-2.5.7 0 1.4.1 1.4.1v1.6h-.8c-.8 0-1 .5-1 1v1.2h1.7l-.3 2.9h-1.4V22A10 10 0 0 0 22 12z"/></svg>
+          </a>
+          <button type="button" id="themeToggle" class="social-link theme-toggle" aria-pressed="false" aria-label="Chuyển chủ đề" title="Chuyển sang chế độ tối">
+            <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" role="img">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+            </svg>
+            <span class="sr-only">Chuyển chủ đề</span>
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <section id="blog" class="section blog">
+      <div class="container reveal-on-scroll">
+        <h2>Blog</h2>
+        <div class="blog-grid">
+          <article class="post">
+            <img src="assets/images/giam-sat-siem.png" alt="SIEM dashboard" loading="lazy" decoding="async">
+            <h3>Giám sát SIEM: Bước đầu xây dựng SOC</h3>
+            <p class="meta">Dec 2025 • 5 phút</p>
+            <p>Tổng quan về cách triển khai SIEM để thu thập, phân loại và cảnh báo sự kiện an ninh.</p>
+            <div class="full-content" style="display:none"><p>SIEM (Security Information and Event Management) là nền tảng kết hợp thu thập log, phân tích và cảnh báo. Bắt đầu bằng việc xác định dữ liệu có ích, cấu hình nguồn log và thiết lập cảnh báo theo tầm quan trọng.</p><p>Chúng tôi mô tả cách chuẩn hóa timestamps, thêm metadata (host, user, correlation_id), và cách kết hợp threat intelligence để enrich sự kiện. Một rule correlation đơn giản được trình bày để phát hiện pattern login đáng ngờ và cách test rule bằng replay log để giảm false positive.</p><p>Cuối cùng là các KPI cần theo dõi (MTTR, tỉ lệ cảnh báo hữu ích, thời gian điều tra trung bình) và ví dụ checklist vận hành giúp đội SOC cải thiện hiệu suất liên tục.</p></div>
+            <a href="blog/giamsat-siem.html" class="link-underline" data-id="giamsat-siem">Xem thêm</a>
+          </article>
+
+          <article class="post">
+            <img src="assets/images/phan-tich-hieu-qua-log.png" alt="Log analysis" loading="lazy" decoding="async">
+            <h3>Phân tích log hiệu quả: mẹo & thủ thuật</h3>
+            <p class="meta">Nov 2025 • 6 phút</p>
+            <p>Cách lọc và phân tích log để rút ra thông tin có giá trị phục vụ điều tra và giám sát.</p>
+            <div class="full-content" style="display:none"><p>Phân tích log đòi hỏi chuẩn hóa dữ liệu (timestamps, user, host), enrichment và áp dụng session correlation để nhìn thấy chuỗi hành vi. Chúng tôi nêu cách lưu các mẫu truy vấn hữu ích và tối ưu index cho các hệ thống lớn.</p><p>Ví dụ: cách kết hợp proxy logs với authentication logs để phát hiện credential stuffing, cùng những tips về mapping và aggregations giúp trả về kết quả nhanh hơn trong thời gian điều tra.</p></div>
+            <a href="blog/phan-tich-log.html" class="link-underline" data-id="phan-tich-log">Xem thêm</a>
+          </article>
+
+          <article class="post">
+            <img src="assets/images/phat-hien-xam-nhap.png" alt="Intrusion detection" loading="lazy" decoding="async">
+            <h3>Phát hiện xâm nhập (IDS/IPS) trong thực tế</h3>
+            <p class="meta">Oct 2025 • 7 phút</p>
+            <p>So sánh IDS vs IPS và cách cấu hình để giảm false positive trong môi trường sản xuất.</p>
+            <div class="full-content" style="display:none"><p>IDS cảnh báo, IPS có thể chặn — việc chọn chế độ inline hay tap phụ thuộc vào rủi ro và hiệu suất. Bài viết hướng dẫn tuning threshold, whitelist, và quy trình staging để test rule trước khi roll-out.</p><p>Có ví dụ cụ thể về tuning một rule SNORT để giảm false positive, và cách tích hợp IDS/IPS với SIEM để cải thiện workflow điều tra.</p></div>
+            <a href="blog/phat-hien-xam-nhap.html" class="link-underline" data-id="phat-hien-xam-nhap">Xem thêm</a>
+          </article>
+
+          <article class="post">
+            <img src="assets/images/workflow.png" alt="SOAR automation" loading="lazy" decoding="async">
+            <h3>Tự động phản hồi sự cố bằng workflow (SOAR)</h3>
+            <p class="meta">Oct 2025 • 6 phút</p>
+            <p>Ví dụ về các playbook tự động hóa dùng n8n và kịch bản phản hồi khi phát hiện IOC.</p>
+            <div class="full-content" style="display:none"><p>SOAR giúp tự động hóa thu thập IOC, enrich thông tin, và quyết định hành động (block IP, cách ly endpoint). Bài viết trình bày playbook mẫu, cách thêm approval step và dry-run để tránh tác động quá mức.</p><p>Chúng tôi cũng đưa ví dụ JSON cho playbook và hướng dẫn cách theo dõi success/failure rate để liên tục cải thiện tính ổn định của tự động hóa.</p></div>
+            <a href="blog/tu-dong-phan-hoi.html" class="link-underline" data-id="tu-dong-phan-hoi">Xem thêm</a>
+          </article>
+
+          <article class="post">
+            <img src="assets/images/tuong-lua.png" alt="Firewall configuration" loading="lazy" decoding="async">
+            <h3>Cấu hình tường lửa: quy tắc thực tế cần biết</h3>
+            <p class="meta">Sep 2025 • 4 phút</p>
+            <p>Những quy tắc đơn giản nhưng quan trọng khi viết access-control lists và policies tường lửa.</p>
+            <div class="full-content" style="display:none"><p>Một policy tốt bắt đầu bằng deny-by-default và chỉ mở các port cần thiết. Bài viết hướng dẫn cách comment rule, gom nhóm theo service và thiết lập review policy định kỳ để loại bỏ rule thừa.</p><p>Chúng tôi cũng gợi ý cách dùng automation để deploy rule an toàn và có rollback plan khi phát sinh lỗi, cùng checklist test sau deployment để đảm bảo không gây gián đoạn dịch vụ.</p></div>
+            <a href="blog/tuong-lua.html" class="link-underline" data-id="tuong-lua">Xem thêm</a>
+          </article>
+
+          <article class="post hidden-post">
+            <img src="assets/images/quan-ly-lo-hong.png" alt="Vulnerability management" loading="lazy" decoding="async">
+            <h3>Quản lý lỗ hổng: từ phát hiện đến vá lỗi</h3>
+            <p class="meta">Sep 2025 • 5 phút</p>
+            <p>Chu trình quản lý lỗ hổng và ưu tiên vá lỗi dựa trên rủi ro thực tế.</p>
+            <div class="full-content" style="display:none"><p>Chương trình quản lý lỗ hổng hiệu quả gồm quét định kỳ, validate kết quả, enrich bằng asset criticality, và tự động tạo ticket kèm SLA. Bài viết chỉ ra cách đặt SLA theo mức độ và các KPI cần theo dõi.</p><p>Beyond patching, cần có xác nhận remediation và báo cáo định kỳ để theo dõi trend rủi ro theo thời gian.</p></div>
+            <a href="blog/quan-ly-lo-hong.html" class="link-underline" data-id="quan-ly-lo-hong">Xem thêm</a>
+          </article>
+
+          <article class="post hidden-post">
+            <img src="assets/images/zero_trust.png" alt="Zero trust network" loading="lazy" decoding="async">
+            <h3>Mạng Zero-Trust: Thiết kế và áp dụng</h3>
+            <p class="meta">Aug 2025 • 8 phút</p>
+            <p>Nguyên tắc zero-trust, phân đoạn mạng và xác thực mạnh để giảm bề mặt tấn công.</p>
+            <div class="full-content" style="display:none"><p>Zero-Trust bắt đầu từ phân đoạn tài nguyên, áp dụng xác thực mạnh (MFA), và quản lý quyền truy cập theo vai trò. Bài viết đưa lộ trình từng bước và ví dụ về telemetry cần thu thập để tinh chỉnh policy.</p><p>Chúng tôi trình bày cách bắt đầu với phân đoạn nhỏ, áp dụng MFA cho các dịch vụ nhạy cảm, và đánh giá tác động trước khi mở rộng chính sách cho toàn tổ chức.</p></div>
+            <a href="blog/zero-trust.html" class="link-underline" data-id="zero-trust">Xem thêm</a>
+          </article>
+
+          <article class="post hidden-post">
+            <img src="assets/images/kich-ban-tan-cong.png" alt="Incident response" loading="lazy" decoding="async">
+            <h3>Kịch bản tấn công thực tế và bài học</h3>
+            <p class="meta">Aug 2025 • 9 phút</p>
+            <p>Phân tích các vụ tấn công nổi bật và các bài học rút ra cho đội vận hành SOC.</p>
+            <a href="blog/phan-ung-su-co.html" class="link-underline" data-id="phan-ung-su-co">Xem thêm</a>
+          </article>
+        </div>
+        <div class="load-more-wrap" style="text-align:center;margin-top:18px">
+          <button id="loadMore" class="btn ghost">Xem thêm</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="postModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc">
+    <div class="modal-backdrop" data-close="true"></div>
+    <div class="modal-panel" tabindex="-1" role="document">
+      <button class="modal-close" aria-label="Đóng" data-close="true">✕</button>
+      <div class="modal-post">
+        <img class="modal-post-image" src="" alt="" />
+        <h2 id="modalTitle"></h2>
+        <p class="modal-meta"></p>
+        <div class="modal-body" id="modalDesc"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="script.js"></script>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="foot-inner">
+      <div class="footer-copy">© 2025 by FELNEE</div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -11,11 +11,8 @@
 .nav a{color:var(--muted);text-decoration:none;font-size:0.95rem;padding:8px 12px}
 .main-nav a{font-size:0.85rem;font-weight:700;color:var(--muted);letter-spacing:2.4px;text-transform:uppercase;transition:color .18s ease}
 .main-nav a.active{color:var(--accent)}
-.logo{font-family:Merriweather,serif;font-weight:700;font-size:1.05rem} 
 
-/* Nav right layout + header actions */
-.header-actions{display:flex;gap:8px;align-items:center}
-.header-actions .btn{padding:8px 12px;font-size:0.9rem}
+/* Nav right layout (no extra header-actions used) */
 
 .hero{display:flex;height:calc(100vh - 72px);margin:0;align-items:stretch;overflow:hidden}
 .hero-panel{flex:1;display:flex;align-items:center;box-sizing:border-box;overflow:hidden}
@@ -42,15 +39,7 @@
 [data-theme="dark"] .hero-visual{background:none}
 [data-theme="dark"] .hero-avatar{filter:brightness(.98)}
 
-/* CTA buttons overlay on hero image */
-.hero-ctas{position:absolute;top:20px;right:20px;display:flex;gap:10px;align-items:center;z-index:5}
-.hero-ctas .btn{background:rgba(255,255,255,0.95);color:var(--accent);box-shadow:0 8px 24px rgba(2,6,23,0.28);padding:8px 12px;border-radius:8px;transition:transform .18s ease,box-shadow .18s ease}
-.hero-ctas .btn:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(2,6,23,0.36)}
-.hero-ctas .btn.black{background:var(--accent);color:var(--bg)}
-
-@media(max-width:900px){
-  .hero-ctas{position:static;margin-top:12px;justify-content:center}
-}
+/* Removed hero CTA overlay styles (not in use) */
 
 .section{padding:64px 0}
 h2{font-family:Merriweather,serif;font-weight:700;margin:0 0 18px}
@@ -122,7 +111,8 @@ h2{font-family:Merriweather,serif;font-weight:700;margin:0 0 18px}
 .contact .btn.ghost:hover,.contact .btn.ghost:focus{background:var(--accent);color:var(--bg);border-color:transparent;box-shadow:0 10px 26px rgba(3,7,18,0.12);transform:translateY(-3px)} 
 /* Remove number input arrows */
 input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
-input[type=number]{-moz-appearance:textfield}
+input[type=number]{-moz-appearance:textfield;-webkit-appearance:textfield;appearance:textfield}
+/* Note: standard 'appearance' added for cross-browser compatibility */
 
 /* Buttons: subtle lift on hover + focus styles */
 .btn{display:inline-block;padding:10px 16px;background:var(--accent);color:var(--bg);border-radius:8px;text-decoration:none;border:none;transition:transform .18s ease,box-shadow .18s ease,background-color .18s;will-change:transform,box-shadow} 
@@ -165,8 +155,6 @@ input[type=number]{-moz-appearance:textfield}
 /* Force SVG fill/stroke to follow current color (useful for SVGs with explicit attributes) */
 .social-link svg, .theme-toggle svg{fill:currentColor;stroke:currentColor}
 
-/* Make placeholder social-link border lighter in dark */
-[data-theme="dark"] .social-link.placeholder{border:1px dashed rgba(255,255,255,0.06);color:var(--muted)}
 [data-theme="dark"] .nav{border-bottom-color:rgba(255,255,255,0.04)}
 [data-theme="dark"] .contact .checkbox .checkmark{border-color:rgba(255,255,255,0.06)}
 [data-theme="dark"] .inline-post-detail{background:#071021;color:var(--accent)}
@@ -186,9 +174,7 @@ input[type=number]{-moz-appearance:textfield}
 .main-nav a:hover,.main-nav a:focus{color:var(--accent)}
 .link-underline.active{color:var(--accent);font-weight:700}
 
-/* Dark button variant for Contact */
-.btn.black{background:var(--accent);color:var(--bg);border:1px solid rgba(255,255,255,0.06)}
-.btn.black:hover,.btn.black:focus{background:#111}
+/* Dark button variant removed (no elements use .btn.black); keep generic .btn and .btn.ghost */
 
 /* Blog styles — balanced cards and bottom-aligned CTA */
 .blog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}

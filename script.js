@@ -2,6 +2,19 @@
   // Page-load animation
   requestAnimationFrame(()=> document.body.classList.add('is-loaded'));
 
+  // Keep body padding-top in sync with the actual header height (fixes overlap when header height changes)
+  function syncBodyPaddingToNav(){
+    const nav = document.querySelector('.nav');
+    if(nav && nav.offsetHeight){
+      const h = nav.offsetHeight;
+      document.body.style.paddingTop = h + 'px';
+      // expose nav height to CSS so we can use it for scroll-margin-top to avoid overlap
+      document.documentElement.style.setProperty('--nav-height', h + 'px');
+    }
+  }
+  syncBodyPaddingToNav();
+  window.addEventListener('resize', syncBodyPaddingToNav);
+
   // Smooth in-page anchors
   document.querySelectorAll("a[href^='#']").forEach(a=>{
     a.addEventListener("click",function(e){
@@ -12,7 +25,7 @@
     });
   });
 
-  // reveal on scroll
+  // reveal on scroll (immediate reveal for elements already in view + subtle stagger)
   const reveals = document.querySelectorAll('.reveal-on-scroll');
   if('IntersectionObserver' in window && reveals.length){
     const obs = new IntersectionObserver((entries, observer)=>{
@@ -24,9 +37,20 @@
       });
     },{threshold:0.12,rootMargin:'0px 0px -10% 0px'});
     reveals.forEach(r=>obs.observe(r));
+
+    // Immediately reveal those already in view with a subtle stagger to match index
+    const nowInView = Array.from(reveals).filter(r => {
+      const rect = r.getBoundingClientRect();
+      return rect.top < window.innerHeight * 0.9;
+    });
+    if(nowInView.length){
+      nowInView.forEach((el, i) => {
+        setTimeout(()=>{ el.classList.add('reveal'); try{ obs.unobserve(el); }catch(e){} }, i * 60);
+      });
+    }
   } else {
-    // fallback
-    reveals.forEach(r=>r.classList.add('reveal'));
+    // fallback: reveal all with small stagger
+    reveals.forEach((r,i)=>setTimeout(()=>r.classList.add('reveal'), i*40));
   }
 
   // mark active nav link
@@ -136,6 +160,48 @@
       localStorage.setItem(THEME_KEY, next);
       applyTheme(next);
     });
+
+    // Mobile menu toggle: accessible simple menu for small screens
+    const mobileToggleBtn = document.getElementById('mobileToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    if(mobileToggleBtn && mobileNav){
+      // ensure mobile nav is closed on desktop widths (in case class was left set)
+      if(window.innerWidth > 900 && document.body.classList.contains('nav-open')){
+        document.body.classList.remove('nav-open');
+        mobileToggleBtn.setAttribute('aria-expanded','false');
+        mobileNav.setAttribute('aria-hidden','true');
+        document.body.style.overflow = '';
+      }
+
+      mobileToggleBtn.addEventListener('click', function(){
+        // only allow toggle on narrow screens
+        if(window.innerWidth > 900) return;
+        const isOpen = document.body.classList.toggle('nav-open');
+        mobileToggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        mobileNav.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+        document.body.style.overflow = isOpen ? 'hidden' : ''; // prevent body scroll when nav is open
+      });
+
+      // close mobile nav when a link inside it is clicked
+      mobileNav.addEventListener('click', function(e){
+        if(e.target && e.target.matches('a')){
+          document.body.classList.remove('nav-open');
+          mobileToggleBtn.setAttribute('aria-expanded','false');
+          mobileNav.setAttribute('aria-hidden','true');
+          document.body.style.overflow = '';
+        }
+      });
+
+      // Close the mobile nav when resizing back to desktop sizes
+      window.addEventListener('resize', function(){
+        if(window.innerWidth > 900 && document.body.classList.contains('nav-open')){
+          document.body.classList.remove('nav-open');
+          mobileToggleBtn.setAttribute('aria-expanded','false');
+          mobileNav.setAttribute('aria-hidden','true');
+          document.body.style.overflow = '';
+        }
+      });
+    }
   })();
 
 });

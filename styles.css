@@ -4,7 +4,7 @@
 *{box-sizing:border-box}body{margin:0;padding-top:72px;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;line-height:1.5;color:var(--accent);background:var(--bg);transition:background .22s ease,color .18s ease} 
 .container{max-width:1100px;margin:0 auto;padding:0 20px}
 .nav{position:fixed;top:0;left:0;right:0;display:flex;justify-content:center;background:var(--bg);border-bottom:1px solid rgba(0,0,0,0.06);height:72px;align-items:center;box-shadow:0 2px 6px rgba(2,6,23,0.04);z-index:1000;pointer-events:auto} 
-.nav-inner{width:1100px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;column-gap:20px}
+.nav-inner{max-width:1100px;width:100%;padding:0 20px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;column-gap:20px}
 .brand{justify-self:start;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--accent);pointer-events:auto}
 .main-nav{justify-self:center;display:flex;gap:18px;align-items:center}
 .nav-right{justify-self:end;display:flex;align-items:center;gap:18px}
@@ -87,6 +87,20 @@ h2{font-family:Merriweather,serif;font-weight:700;margin:0 0 18px}
   .contact-grid{grid-template-columns:1fr;max-width:640px}
   .contact-info{order:2}
 }
+
+/* Mobile improvements for About -> Skills section */
+@media(max-width:720px){
+  .skill-grid{grid-template-columns:1fr;gap:16px}
+  .skill-card{padding:14px;border-radius:10px}
+  .skill-card h3{font-size:1.02rem;margin-bottom:8px}
+  .skill-card ul{padding-left:18px;margin:0}
+  .skill-card li{margin-bottom:10px;line-height:1.55}
+  /* make certs (full width) sit below with comfortable padding */
+  .skill-card.certs-full{padding-left:14px;padding-right:14px}
+  /* slightly increase section vertical spacing */
+  .section.skills{padding-top:36px;padding-bottom:36px}
+}
+
 .contact label{display:block;font-weight:700;color:var(--accent);margin-bottom:6px}
 .contact .required-note{font-weight:400;color:var(--muted);font-size:0.95rem;margin-left:8px} 
 .contact input:not([type=checkbox]), .contact textarea{padding:12px 14px;border:1px solid #e9e9ea;border-radius:6px;font-family:Inter,system-ui;font-size:1rem;color:var(--accent);background:#f4f4f4;width:100%;box-shadow:none}
@@ -299,11 +313,56 @@ input[type=number]{-moz-appearance:textfield}
   .hero{flex-direction:column}
   .hero-panel--left{padding:40px}
   .hero-title{font-size:2.2rem}
+  /* Ensure right panel behaves when stacking vertically */
+  .hero-panel--right{flex-basis:auto;width:100%;height:auto;min-height:220px}
+  .hero-visual{height:100%;min-height:220px}
+  .hero-avatar{width:100%;height:auto;max-height:420px;object-fit:cover}
+  /* Make header more compact and enable mobile menu */
+  .nav{height:64px}
+  body{padding-top:64px}
+  /* Force-hide desktop nav links on small screens */
+  .main-nav{display:none !important;visibility:hidden !important;height:0 !important;overflow:hidden !important}
+  .mobile-toggle{display:inline-flex}
+  .nav-right .socials{gap:8px}
+  .social-link{width:34px;height:34px}
+}
+
+@media(max-width:520px){
+  /* Tighter spacing for very small devices */
+  .hero-panel--left{padding:24px}
+  .hero-title{font-size:1.65rem}
+  .hero-panel--right{min-height:180px}
+  .hero-avatar{max-height:320px}
 }
 
 /* Page & reveal animations */
 .page{opacity:0;transform:translateY(8px);transition:opacity .5s ease,transform .5s ease}
 body.is-loaded .page{opacity:1;transform:none}
+
+/* Mobile nav base: hidden by default and only shown when toggled */
+.mobile-nav{display:none;position:fixed;left:0;right:0;top:64px;background:var(--bg);z-index:950;box-shadow:0 10px 30px rgba(2,6,23,0.18);padding:12px 20px;border-top:1px solid rgba(0,0,0,0.06)}
+.mobile-nav a{display:block;padding:10px 0;border-bottom:1px solid rgba(0,0,0,0.04);color:var(--muted);text-decoration:none}
+.mobile-nav a:last-child{border-bottom:none}
+.body-nav{display:none}
+
+/* Show mobile nav only when body has nav-open class */
+body.nav-open .mobile-nav{display:block}
+
+/* Ensure mobile nav links use site colors (avoid browser default visited colors) */
+.mobile-nav a{color:var(--muted) !important}
+
+/* Explicitly hide mobile-nav and toggle on large screens */
+@media(min-width:901px){
+  .mobile-nav{display:none !important}
+  body.nav-open .mobile-nav{display:none !important} /* double-guard: never show on desktop */
+  .mobile-toggle{display:none !important}
+}
+
+/* Hide avatar on very small screens to give more space */
+@media(max-width:420px){
+  .hero-panel--right{display:none}
+  .hero{align-items:flex-start}
+}
 
 .reveal-on-scroll{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
 .reveal-on-scroll.reveal{opacity:1;transform:none}
@@ -321,6 +380,21 @@ body.is-loaded .page{opacity:1;transform:none}
 .hero-inner{opacity:1;transform:none;animation:none}
 .hero-visual{opacity:1;transform:none;animation:none}
 @keyframes slideIn{to{opacity:1;transform:none}}@keyframes fadeIn{to{opacity:1;transform:none}}
+
+/* Avoid fixed header covering content when scrolled/anchored */
+.hero, .section { scroll-margin-top: calc(var(--nav-height,72px) + 12px); }
+
+/* Small extra spacing for hero title on very small screens */
+@media(max-width:520px){
+  /* push the content down away from the fixed header using the actual nav height */
+  .hero-inner{padding-top:calc(var(--nav-height,72px) + 12px);padding-bottom:18px}
+  /* ensure the title sits comfortably below the nav */
+  .hero-title{margin-top:12px;margin-bottom:6px}
+  /* ensure the right panel (avatar) sits a bit lower when stacked */
+  .hero-panel--right{margin-top:28px}
+  /* give the avatar more breathing room from the text */
+  .hero-avatar{margin-top:14px}
+} 
 
 /* Active nav link */
 .nav a.active{color:var(--accent);font-weight:600}

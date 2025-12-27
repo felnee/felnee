@@ -1,13 +1,13 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="vi">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <script src="preload-theme.js?v=1"></script>
-  <title>Projects — FELNEE</title>
+  <script src="preload-theme.js"></script>
+  <title>FELNEE</title>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;700&family=Inter:wght@300;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=5">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="nav">
@@ -17,9 +17,9 @@
         <span class="brand-text"><span class="brand-word">FELNEE</span></span>
       </a>
       <nav class="main-nav">
-          <a href="index.html" class="link-underline">Home</a>
+          <a href="index.html" class="link-underline active">Home</a>
           <a href="blog.html" class="link-underline">Blog</a>
-          <a href="projects.html" class="link-underline active">Projects</a>
+          <a href="projects.html" class="link-underline">Projects</a>
           <a href="about.html" class="link-underline">About</a>
           <a href="contact.html" class="link-underline">Contact</a>
       </nav>
@@ -63,51 +63,31 @@
     <a href="contact.html">Contact</a>
   </nav>
 
-  <main class="page">
-    <section id="projects" class="section projects">
-      <div class="container reveal-on-scroll">
-        <h2>Dự án</h2>
-        <div class="project-grid">
-          <article class="project">
-            <div class="project-figure">
-              <span class="project-icon project-icon--ball" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5.09 6.5l-2.07-.36-.7-1.98 1.49-1.28A7.93 7.93 0 0 1 17.09 8.5zM12 4.1c.83 0 1.63.17 2.38.48L13.8 6.7l-1.82-.04-1.14-1.8C10.66 4.18 11.32 4.1 12 4.1zM6.91 6.2L8.4 7.5l-1.14 1.83-2.07.36A7.93 7.93 0 0 1 6.9 6.2zM4.1 12c0-.62.07-1.22.21-1.79l2.07.36.7 1.98-1.49 1.28A7.93 7.93 0 0 1 4.1 12zm3.02 5.8l1.14-1.83 1.82.04.54 2.38C9.63 17.72 9 17.1 7.12 17.8zM12 19.9c-.83 0-1.63-.17-2.38-.48l1.58-2.07 1.82.04 1.14 1.8c-.8.3-1.45.38-2.16.71-.04.02-.08.02-.6.0zM17.09 17.8c1.88-.69 2.51-.08 1.63-.3l-1.49-1.28 1.14-1.83 2.07-.36c.14.57.21 1.17.21 1.79 0 1.06-.25 2.07-.7 2.95-1.23.12-2.46.12-3.86-.37z"/></svg>
-              </span>
-            </div>
-            <h3>Hệ thống quản lý sân bóng</h3>
-            <p>Hệ thống đặt sân, quản lý lịch, theo dõi trạng thái sân, và xử lý thanh toán trực tuyến cho quản trị viên và khách hàng.</p>
-            <p class="meta">Node.js • Express • MySQL • Bootstrap</p>
-          </article>
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-panel hero-panel--left">
+        <div class="hero-inner">
+          <p class="eyebrow">Xin chào, tôi là</p>
+          <h1 class="hero-title">Phạm Mạnh Phi</h1>
+          <p class="hero-sub">An ninh mạng - Tự động hóa - Giám sát &amp; SOAR</p>
+          <p class="hero-desc">Kỹ sư An ninh mạng chuyên về triển khai giải pháp giám sát, phân tích log và tự động hóa phản hồi. Thực hành với SIEM (Splunk), n8n và scripting Python để giảm thời gian phản hồi và nâng cao hiệu quả điều tra.</p>
 
-          <article class="project">
-            <div class="project-figure">
-              <span class="project-icon project-icon--phone" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17 1H7a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm0 18H7V5h10v14zM11 19h2v2h-2v-2z"/></svg>
-              </span>
-            </div>
-            <h3>Website bán thiết bị di động</h3>
-            <p>Website thương mại điện tử bán điện thoại di động, hỗ trợ giỏ hàng, thanh toán và trang quản trị sản phẩm.</p>
-            <p class="meta">React • Node.js • Stripe • MongoDB</p>
-          </article>
-
-          <article class="project">
-            <div class="project-figure">
-              <span class="project-icon project-icon--mail" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-              </span>
-            </div>
-            <h3>MYCHAT — Ứng dụng nhắn tin</h3>
-            <p>Ứng dụng chat thời gian thực cho nhóm, bao gồm nhắn tin 1-1, phòng chat, emoji và lưu trữ lịch sử tin nhắn.</p>
-            <p class="meta">Socket.io • Node.js • React Native</p>
-          </article>
+        </div>
+      </div>
+      <div class="hero-panel hero-panel--right" aria-hidden="true">
+        <div class="hero-visual">
+          <img src="assets/images/avatar.png" alt="Avatar của Phạm Mạnh Phi" class="hero-avatar">
         </div>
       </div>
     </section>
+
+
+
   </main>
 
 
 
-  <script src="script.js?v=2"></script>
+  <script src="script.js"></script>
 
   <footer class="site-footer" role="contentinfo">
     <div class="foot-inner">
